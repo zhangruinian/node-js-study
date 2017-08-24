@@ -2,7 +2,7 @@ const http = require("http")
 const querystring = require("querystring")
 
 let postData = querystring.stringify({
-    "content": "老师讲的不错，赞一个",
+    "content": "赞一个,node-测试一下",
     "cid":348
 })
 
@@ -17,9 +17,9 @@ let options = {
         'Accept-Language':'zh-CN,zh;q=0.8',
         'Cache-Control':'no-cache',
         'Connection':'keep-alive',
-        'Content-Length':'89',
+        'Content-Length':postData.length,
         'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
-        'Cookie':'PHPSESSID=a2cd7smccca1qpjv2m49dqmfh3; imooc_uuid=d5de35c8-41d7-4f58-ba0d-2a61ff584655; imooc_isnew_ct=1481869272; cninfo=banner-01e3f93db84fc4dbc8e8bb51befc56ee; loginstate=1; apsid=ViODJhNTg0ZDgzMWE5NTYyODU1OWJjOGE5ZjRiZGIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMTA2MzQyNwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5NDY3NTgwOTVAcXEuY29tAAAAAAAAAAAAAAAAAAAAADE0MjMxM2U5MTAwMDllMGMxZWUwYTk0MzFjYjk5OWJiLkqeWS5Knlk%3DN2; last_login_username=946758095%40qq.com; IMCDNS=0; Hm_lvt_f0cfcccd7b1393990c78efdeebff3968=1503384391; Hm_lpvt_f0cfcccd7b1393990c78efdeebff3968=1503560347; imooc_isnew=2; cvde=58fd4faebd060-163',
+        'Cookie':'PHPSESSID=b5m3ssfnl8i22d6j7mcuaepri0; imooc_uuid=1b82a8ec-039e-40ac-9e1f-25d59c4920a6; imooc_isnew=1; imooc_isnew_ct=1503585517; loginstate=1; apsid=ViODJhNTg0ZDgzMWE5NTYyODU1OWJjOGE5ZjRiZGIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMTA2MzQyNwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5NDY3NTgwOTVAcXEuY29tAAAAAAAAAAAAAAAAAAAAADdkNTVmZWUyMTFkNTM4ZWZkMDY5NjBjOTdlMmM1ZDJiKumeWSrpnlk%3DN2; last_login_username=946758095%40qq.com; IMCDNS=0; Hm_lvt_f0cfcccd7b1393990c78efdeebff3968=1503585521,1503586594; Hm_lpvt_f0cfcccd7b1393990c78efdeebff3968=1503586684; cvde=599ee4ed3edfd-39',
         'Host':'www.imooc.com',
         'Origin':'http://www.imooc.com',
         'Pragma':'no-cache',
@@ -28,3 +28,26 @@ let options = {
         'X-Requested-With':'XMLHttpRequest'
     }
 }
+
+let req = http.request(options, (res) =>{
+    console.log(res.statusCode)
+    console.log(JSON.stringify(res.headers))
+    //node里面 接收数据的时候是以流的形式发送的
+    res.on("data", (chunk) =>{
+        console.log(Buffer.isBuffer(chunk));
+        console.log(typeof  chunk);
+    })
+    
+    res.on('end', () =>{
+        console.log("评论结束");
+        console.log(res);
+    })
+})
+
+req.on("error", (e) =>{
+    console.log("评论出错" + e.message);
+})
+// 写入到请求体
+req.write(postData)
+//手动表明结束
+req.end()
