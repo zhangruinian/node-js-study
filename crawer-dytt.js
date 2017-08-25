@@ -27,7 +27,7 @@ http.get(url, function(res) {
         })
         console.log(titles);
 
-        fs.writeFile('./test.txt', JSON.stringify(titles), 'utf-8', function(err) {
+        fs.writeFile('./test1.txt', JSON.stringify(titles), 'utf-8', function(err) {
             if (err) {
                 console.log(err);
             }
