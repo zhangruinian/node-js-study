@@ -2,7 +2,7 @@ const http = require("http")
 const querystring = require("querystring")
 
 let postData = querystring.stringify({
-    "content": "赞一个,node-测试一下",
+    "content": "赞一个,别封",
     "cid":348
 })
 
@@ -19,7 +19,7 @@ let options = {
         'Connection':'keep-alive',
         'Content-Length':postData.length,
         'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
-        'Cookie':'PHPSESSID=b5m3ssfnl8i22d6j7mcuaepri0; imooc_uuid=1b82a8ec-039e-40ac-9e1f-25d59c4920a6; imooc_isnew=1; imooc_isnew_ct=1503585517; loginstate=1; apsid=ViODJhNTg0ZDgzMWE5NTYyODU1OWJjOGE5ZjRiZGIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMTA2MzQyNwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5NDY3NTgwOTVAcXEuY29tAAAAAAAAAAAAAAAAAAAAADdkNTVmZWUyMTFkNTM4ZWZkMDY5NjBjOTdlMmM1ZDJiKumeWSrpnlk%3DN2; last_login_username=946758095%40qq.com; IMCDNS=0; Hm_lvt_f0cfcccd7b1393990c78efdeebff3968=1503585521,1503586594; Hm_lpvt_f0cfcccd7b1393990c78efdeebff3968=1503586684; cvde=599ee4ed3edfd-39',
+        'Cookie':'PHPSESSID=b5m3ssfnl8i22d6j7mcuaepri0; imooc_uuid=1b82a8ec-039e-40ac-9e1f-25d59c4920a6; imooc_isnew_ct=1503585517; loginstate=1; apsid=ViODJhNTg0ZDgzMWE5NTYyODU1OWJjOGE5ZjRiZGIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMTA2MzQyNwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5NDY3NTgwOTVAcXEuY29tAAAAAAAAAAAAAAAAAAAAADdkNTVmZWUyMTFkNTM4ZWZkMDY5NjBjOTdlMmM1ZDJiKumeWSrpnlk%3DN2; last_login_username=946758095%40qq.com; IMCDNS=0; Hm_lvt_f0cfcccd7b1393990c78efdeebff3968=1503585521,1503586594; Hm_lpvt_f0cfcccd7b1393990c78efdeebff3968=1503764108; imooc_isnew=2; cvde=599ee4ed3edfd-274',
         'Host':'www.imooc.com',
         'Origin':'http://www.imooc.com',
         'Pragma':'no-cache',
@@ -31,7 +31,6 @@ let options = {
 
 let req = http.request(options, (res) =>{
     console.log(res.statusCode)
-    console.log(JSON.stringify(res.headers))
     //node里面 接收数据的时候是以流的形式发送的
     res.on("data", (chunk) =>{
         console.log(Buffer.isBuffer(chunk));
@@ -40,7 +39,7 @@ let req = http.request(options, (res) =>{
     
     res.on('end', () =>{
         console.log("评论结束");
-        console.log(res);
+        // console.log(res);
     })
 })
 

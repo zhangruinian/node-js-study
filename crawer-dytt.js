@@ -3,7 +3,7 @@ var http = require('http');
 var iconv = require('iconv-lite');
 var fs = require('fs')
 
-var url = 'http://www.ygdy8.net/html/gndy/dyzz/index.html';
+var url = 'http://www.ygdy8.net/html/gndy/dyzz/h5-location.html';
 
 http.get(url, function(res) {
     var chunks = [];

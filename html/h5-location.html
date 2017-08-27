@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>node-h5-location 看console</p>
+
+<script>
+    function success(pos) {
+        var crd = pos.coords
+
+        console.log('Your current position is:')
+        console.log('纬度 : ' + crd.latitude)
+        console.log('经度: ' + crd.longitude)
+        console.log('More or less ' + crd.accuracy + ' meters.')
+    }
+
+    function error(err) {
+        console.warn('ERROR(' + err.code + '): ' + err.message)
+    }
+
+    navigator.geolocation.getCurrentPosition(success, error)
+</script>
+</body>
+</html>
