@@ -904,4 +904,6 @@ let html = "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head>\n" +
     "</body></html>"
 
 let trs = $('.table_qr tr', html)
-console.log($(trs[5]).find('input[id="ticketName_1"]'))
+console.log($('#ticketName_1', html).attr('value'))
+// console.log($(trs[5]).find('input[id="ticketName_1"]').attr('id'))
+console.log($('#token', html).attr('value'))
